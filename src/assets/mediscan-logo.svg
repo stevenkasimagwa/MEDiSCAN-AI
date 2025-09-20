@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="title">
+  <title id="title">MEDiScan AI logo</title>
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#06b6d4"/>
+      <stop offset="1" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <!-- Circular badge -->
+  <circle cx="60" cy="60" r="54" fill="#fff" stroke="#0f172a" stroke-width="3" />
+
+  <!-- Cross / document combo -->
+  <rect x="34" y="26" width="52" height="68" rx="8" fill="#f8fafc" stroke="#0f172a" stroke-width="2"/>
+  <rect x="46" y="34" width="28" height="52" rx="6" fill="url(#g1)"/>
+
+  <!-- Pixel/AI dots -->
+  <circle cx="86" cy="86" r="3" fill="#06b6d4" />
+  <circle cx="74" cy="88" r="3" fill="#06b6d4" />
+  <circle cx="90" cy="74" r="3" fill="#06b6d4" />
+
+  <!-- Wordmark small for accessibility (not used visually) -->
+  <text x="60" y="114" font-family="Inter, Arial, sans-serif" font-size="8" fill="#0f172a" text-anchor="middle">MEDiScan AI</text>
+</svg>

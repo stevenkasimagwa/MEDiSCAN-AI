@@ -1,0 +1,47 @@
+CREATE DATABASE IF NOT EXISTS medical_records;
+USE medical_records;
+
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  name VARCHAR(255) DEFAULT '',
+  password_hash VARCHAR(255) NOT NULL,
+  role ENUM('doctor','admin') DEFAULT 'doctor',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS doctors (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(255) UNIQUE,
+  name VARCHAR(255),
+  specialization VARCHAR(255),
+  role ENUM('doctor','admin') DEFAULT 'doctor',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS medical_records (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT DEFAULT NULL,
+  patient_name VARCHAR(255),
+  raw_text LONGTEXT,
+  diagnosis TEXT,
+  medications TEXT,
+  age INT DEFAULT NULL,
+  blood_pressure VARCHAR(64) DEFAULT NULL,
+  weight VARCHAR(64) DEFAULT NULL,
+  sex VARCHAR(32) DEFAULT NULL,
+  record_date DATE DEFAULT NULL,
+  image_url VARCHAR(1024) DEFAULT NULL,
+  doctor_name VARCHAR(255) DEFAULT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS audit_logs (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT,
+  action VARCHAR(255),
+  details TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+);

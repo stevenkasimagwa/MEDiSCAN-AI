@@ -1,0 +1,256 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+  /* Medical MEDiScan themed color palette - teal/cyan medical theme */
+    --background: 210 40% 98%;
+    --foreground: 210 20% 10%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 210 20% 10%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 20% 10%;
+    
+    --primary: 180 85% 35%; /* Medical teal */
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 185 15% 95%;
+    --secondary-foreground: 210 20% 10%;
+    
+    --muted: 185 20% 96%;
+    --muted-foreground: 210 15% 45%;
+    
+    --accent: 175 100% 45%; /* Bright teal accent */
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 185 20% 88%;
+    --input: 185 20% 88%;
+    --ring: 180 85% 35%;
+    
+    --radius: 0.75rem;
+    
+    /* Medical themed gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(180 85% 35%), hsl(175 100% 45%));
+    --gradient-medical: linear-gradient(135deg, hsl(180 85% 35%), hsl(190 80% 40%), hsl(175 100% 45%));
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 210 20% 15%;
+    --sidebar-primary: 180 85% 35%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 185 20% 96%;
+    --sidebar-accent-foreground: 210 20% 15%;
+    --sidebar-border: 185 20% 88%;
+    --sidebar-ring: 180 85% 35%;
+  }
+
+  .dark {
+    --background: 210 20% 8%;
+    --foreground: 185 20% 95%;
+    
+    --card: 210 20% 10%;
+    --card-foreground: 185 20% 95%;
+    
+    --popover: 210 20% 10%;
+    --popover-foreground: 185 20% 95%;
+    
+    --primary: 175 100% 45%; /* Brighter teal for dark mode */
+    --primary-foreground: 210 20% 8%;
+    
+    --secondary: 210 20% 15%;
+    --secondary-foreground: 185 20% 95%;
+    
+    --muted: 210 20% 15%;
+    --muted-foreground: 185 15% 65%;
+    
+    --accent: 180 85% 35%;
+    --accent-foreground: 185 20% 95%;
+    
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 185 20% 95%;
+    
+    --border: 210 20% 20%;
+    --input: 210 20% 20%;
+    --ring: 175 100% 45%;
+    
+    --sidebar-background: 210 20% 10%;
+    --sidebar-foreground: 185 20% 90%;
+    --sidebar-primary: 175 100% 45%;
+    --sidebar-primary-foreground: 210 20% 8%;
+    --sidebar-accent: 210 20% 15%;
+    --sidebar-accent-foreground: 185 20% 90%;
+    --sidebar-border: 210 20% 20%;
+    --sidebar-ring: 175 100% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Mobile-friendly adjustments */
+@layer utilities {
+  .img-responsive {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Ensure SVG logos scale nicely when used inline */
+  .logo-svg {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  /* Reduce tall viewers on small screens */
+  @media (max-width: 640px) {
+    .h-\[70vh\] {
+      height: 50vh !important;
+    }
+    .sm\:h-\[60vh\] {
+      height: 50vh !important;
+    }
+  }
+
+  /* Tighten spacing for small devices */
+  @media (max-width: 480px) {
+    .mb-2 { margin-bottom: 0.375rem; }
+    .px-3 { padding-left: 0.5rem; padding-right: 0.5rem; }
+    .py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+  }
+
+  /* Login font helper — Interstate Condensed Hairline (placeholder). To use, place the font file at public/fonts/InterstateCondensed-Hairline.woff2 */
+  @font-face {
+    font-family: 'InterstateCondensedHairline';
+    /* Prefer WOFF2, fall back to OTF if present */
+    src: url('/fonts/InterstateCondensed-Hairline.woff2') format('woff2'),
+         url('/fonts/InterstateThinCondensed.otf') format('opentype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* If a Calibri font file is provided in public/fonts, prefer it; otherwise use system Calibri */
+  @font-face {
+    font-family: 'Calibri';
+    src: local('Calibri'), url('/fonts/calibri-font-family/calibri-regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  .login-font {
+    /* Prefer Calibri (user-provided or system), fall back to the condensed hairline and common system fonts */
+    font-family: 'Calibri', 'InterstateCondensedHairline', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  }
+}
+
+/* Global responsive rules (mobile-first) -------------------------------------------------- */
+@layer base {
+  /* Universal box-sizing */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  /* Prevent horizontal scroll on small devices */
+  html, body {
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Images, videos and svg responsiveness */
+  img, picture, video, svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Text wrapping and responsive font sizing */
+  body {
+    /* Mobile-first base font, scales between 14px and 18px */
+    font-size: clamp(14px, 1.6vw, 18px);
+    word-break: break-word;
+    overflow-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  p, li, h1, h2, h3, h4, h5, h6, span {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  /* Layout helpers: container, row, col (mobile-first) */
+  .container {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .col {
+    flex: 1 1 100%;
+    min-width: 0; /* allow flex children to shrink */
+  }
+
+  /* Responsive column helpers (utility-like) */
+  .col-2 { flex: 1 1 100%; }
+  .col-3 { flex: 1 1 100%; }
+
+  /* Card grid helper: stack on mobile, switch to grid at breakpoints */
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 600px) {
+    .col-2 { flex: 0 0 calc(50% - 1rem); }
+    .card-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 992px) {
+    .col-3 { flex: 0 0 calc(33.333% - 1rem); }
+    .card-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* Cards should default to full width on mobile */
+  .card, .card > * {
+    width: 100%;
+  }
+
+  /* Prevent overlapping children and ensure components don't overflow */
+  .no-overflow {
+    overflow: hidden;
+  }
+}
+
+@layer utilities {
+  /* Utility to force responsive text breaking */
+  .text-break { word-break: break-word; overflow-wrap: anywhere; }
+  /* Utility to make media scale down */
+  .media-responsive { max-width: 100%; height: auto; display: block; }
+}
+
+/* End global responsive rules ------------------------------------------------------------ */
